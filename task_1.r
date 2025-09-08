@@ -1,3 +1,5 @@
+data <- read.csv("data/Data_T1.csv")
+
 # Examine data structure
 head(data)
 summary(data)

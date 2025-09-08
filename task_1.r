@@ -1,3 +1,7 @@
+# Install tidyverse
+install.packages("tidyverse")
+
+library(readr)
 data <- read.csv("data/Data_T1.csv")
 
 # Examine data structure
@@ -36,3 +40,5 @@ t.test(NFL ~ GROUP, data = data, var.equal = FALSE)
 
 # Wilcoxon test for P-tau181 (not normal)
 wilcox.test(PTAU181 ~ GROUP, data = data)
+
+

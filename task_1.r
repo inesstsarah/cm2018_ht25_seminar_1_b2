@@ -41,4 +41,8 @@ t.test(NFL ~ GROUP, data = data, var.equal = FALSE)
 # Wilcoxon test for P-tau181 (not normal)
 wilcox.test(PTAU181 ~ GROUP, data = data)
 
+binom.test(PTAU181 ~ GROUP, data = data)
+
+binom.test(data$PTAU181[data$GROUP == 0], data$PTAU181[data$GROUP == 1], alternative = “two.sided, conf.level = 0.95)
+
 

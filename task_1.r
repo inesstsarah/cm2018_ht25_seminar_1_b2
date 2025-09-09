@@ -90,6 +90,54 @@ t.test(NFL ~ GROUP, data = data, var.equal = FALSE)
 # Wilcoxon test for P-tau181 (not normal)
 wilcox.test(PTAU181 ~ GROUP, data = data)
 
+# Correlation test. Filter only Group 0 (Control participants)
+group1 <- subset(data, GROUP == 0)
+
+# Scatter plot with regression line
+ggplot(group1, aes(x = NFL, y = PTAU181)) +
+  geom_point(color = "red", size = 3) +
+  geom_smooth(method = "lm", se = TRUE, color = "black") +
+  labs(
+    title = "Correlation between NFL and P-tau181 (Group 0: Control)",
+    x = "NFL (pg/mL)",
+    y = "P-tau181 (pg/mL)"
+  ) +
+  theme_minimal(base_size = 14)
+
+# Pearson correlation
+cor(group1$NFL, group1$PTAU181, method = "pearson")
+
+# Correlation test. Filter only Group 1 (AD participants)
+group1 <- subset(data, GROUP == 1)
+
+# Scatter plot with regression line
+ggplot(group1, aes(x = NFL, y = PTAU181)) +
+  geom_point(color = "red", size = 3) +
+  geom_smooth(method = "lm", se = TRUE, color = "black") +
+  labs(
+    title = "Correlation between NFL and P-tau181 (Group 1: AD)",
+    x = "NFL (pg/mL)",
+    y = "P-tau181 (pg/mL)"
+  ) +
+  theme_minimal(base_size = 14)
+
+# Pearson correlation
+cor(group1$NFL, group1$PTAU181, method = "pearson")
+
+# Correlation test. Scatter plot for ALL participants (Group 0 + Group 1 together)
+ggplot(data, aes(x = NFL, y = PTAU181)) +
+  geom_point(color = "blue", size = 3) +
+  geom_smooth(method = "lm", se = TRUE, color = "black") +
+  labs(
+    title = "Correlation between NFL and P-tau181 (All Participants)",
+    x = "NFL (pg/mL)",
+    y = "P-tau181 (pg/mL)"
+  ) +
+  theme_minimal(base_size = 14)
+
+# Pearson correlation across all participants
+cor(data$NFL, data$PTAU181, method = "pearson")
+
 
 
 

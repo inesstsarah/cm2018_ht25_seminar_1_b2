@@ -6,12 +6,17 @@
 # Normal sampling
 library(pwrss)
 library(pwr)
+install.packages(pwr)
 data <- read.csv("data/Data_T1.csv")
 
 head(data)
 # get mean
 
 x_NFL <- mean(data$NFL)
+
+# Function for geometric mean
+geometric_mean_base <- exp(mean(log(data$NFL)))
+
 sd_contr <- sd(data$NFL)
 nc_samples <- length(data$NFL)
 NFL_contr <- rnorm(nc_samples, x_NFL, sd_NFL)

@@ -44,5 +44,19 @@ t.test(treated_group, control_group)
 # This shows that there is a significant difference within the distributions because of the low p value
 
 # Calculate Cohen's d value
+library(effectsize)
+
+cohens_d(control_group, treated_group)
+
+# The results of the Cohen's D is as follows:
+#Cohen's d |       95% CI
+#------------------------
+#  0.68      | [0.16, 1.19]
+# This shows that there is a large separation within the control group and the treated group's means
+
+# Do t-test on the control group and the 
+
+
+# Maybe we could do ANOVA on the 3 tests
 
 

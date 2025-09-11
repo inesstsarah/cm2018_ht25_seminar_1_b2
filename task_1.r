@@ -22,7 +22,8 @@ hist(data$NFL[data$GROUP == 1], main = "NfL - group 1", xlab = "X")
 # Fit the NFL data to the normal distribution
 normal_params_0 <- fitdistr(data$NFL[data$GROUP == 0], "normal")
 normal_params_1 <- fitdistr(data$NFL[data$GROUP == 1], "normal")
-normal_params_1
+normal_params_0      # Added for visualisation
+normal_params_1      # Added for visualisation
 
 NFL_group_0 = data$NFL[data$GROUP == 0]
 NFL_group_1 = data$NFL[data$GROUP == 1]

@@ -4,12 +4,8 @@ install.packages("pwr")
 # Import packages
 library(pwrss)
 library(pwr)
-<<<<<<< Updated upstream
-
-=======
 library(car)
-install.packages(pwr)
->>>>>>> Stashed changes
+
 data <- read.csv("data/Data_T1.csv")
 
 # Examine data structure

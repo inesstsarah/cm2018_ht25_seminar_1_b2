@@ -7,6 +7,7 @@ library(readr)
 library(car)
 library(dplyr)
 library(MASS)
+library(tidyverse)
 
 data <- read.csv("data/Data_T1.csv")
 

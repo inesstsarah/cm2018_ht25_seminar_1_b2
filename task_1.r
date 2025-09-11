@@ -29,8 +29,8 @@ PTAU181_group_1 = data$PTAU181[data$GROUP == 1]
 # ------------------------- Visualise NfL -------------------------------------
 
 # Histograms with counts
-hist(NFL_group_0, main = "NfL - group 0", xlab = "X")
-hist(NFL_group_1, main = "NfL - group 1", xlab = "X")
+hist(NFL_group_0, main = "NfL Histogram - Control Group", xlab = "NfL Concentration (pg/mL)")
+hist(NFL_group_1, main = "NfL Histogram - Treated Group", xlab = "NfL Concentration (pg/mL)")
 
 # Fit the NFL data to the normal distribution
 normal_params_0 <- fitdistr(NFL_group_0, "normal")
@@ -54,7 +54,7 @@ y_weib <- dweibull(x_pdf,
                    scale = weibull_params_0$estimate["scale"])
 
 # Plot the histogram and lines
-hist(NFL_group_0, freq = FALSE, xlab = "NFL concentration", ylab = "Density", main = "NFL Group 0 Fitted Distributions")
+hist(NFL_group_0, freq = FALSE, xlab = "NFL Concentration (pg/mL)", ylab = "Density", main = "NFL Control Group Fitted Distributions")
 lines(x_pdf, y_norm, col="blue")
 lines(x_pdf, y_weib, col="red")
 legend(x = "topleft", c("normal","Weibull"), col=c("blue","red"), lty = 1, cex = 1)
@@ -75,7 +75,7 @@ y_weib <- dweibull(x_pdf,
 
 
 # Plot the histogram and lines
-hist(NFL_group_1, freq = FALSE, xlab = "NFL concentration", ylab = "Density", main = "NFL Group 1 Fitted Distributions")
+hist(NFL_group_1, freq = FALSE, xlab = "NFL Concentration (pg/mL)", ylab = "Density", main = "NFL Treated Group Fitted Distributions")
 lines(x_pdf, y_norm, col="purple")
 lines(x_pdf, y_weib, col="orange")
 legend(x = "topleft", c("normal","Weibull"), col=c("purple","orange"), lty = 1, cex = 1)
@@ -84,8 +84,8 @@ legend(x = "topleft", c("normal","Weibull"), col=c("purple","orange"), lty = 1, 
 # ------------------------- Visualise P-tau181 --------------------------------
 
 # Histograms with counts
-hist(PTAU181_group_0, main = "P-tau181 - group 0", xlab = "X")
-hist(PTAU181_group_1, main = "P-tau181 - group 1", xlab = "X")
+hist(PTAU181_group_0, main = "P-tau181 Histogram - Control Group", xlab = "P-tau181 Concentration (pg/mL)")
+hist(PTAU181_group_1, main = "P-tau181 Histogram - Treated Group", xlab = "P-tau181 Concentration (pg/mL)")
 
 # Fit the P-tau181 data to the normal distribution
 normal_params_0 <- fitdistr(PTAU181_group_0, "normal")
@@ -110,7 +110,7 @@ y_weib <- dweibull(x_pdf,
                    scale = weibull_params_0$estimate["scale"])
 
 # Plot the histogram and lines
-hist(PTAU181_group_0, freq = FALSE, xlab = "P-tau181 concentration", ylab = "Density", main = "P-tau181 Group 0 Fitted Distributions")
+hist(PTAU181_group_0, freq = FALSE, xlab = "P-tau181 Concentration (pg/mL)", ylab = "Density", main = "P-tau181 Control Group Fitted Distributions")
 lines(x_pdf, y_norm, col="blue")
 lines(x_pdf, y_weib, col="red")
 legend(x = "topleft", c("normal","Weibull"), col=c("blue","red"), lty = 1, cex = 1)
@@ -131,7 +131,7 @@ y_weib <- dweibull(x_pdf,
 
 
 # Plot the histogram and lines
-hist(PTAU181_group_1, freq = FALSE, xlab = "P-tau181 concentration", ylab = "Density", main = "P-tau181 Group 1 Fitted Distributions")
+hist(PTAU181_group_1, freq = FALSE, xlab = "P-tau181 Concentration (pg/mL)", ylab = "Density", main = "P-tau181 Treated Group Fitted Distributions")
 lines(x_pdf, y_norm, col="purple")
 lines(x_pdf, y_weib, col="orange")
 legend(x = "topleft", c("normal","Weibull"), col=c("purple","orange"), lty = 1, cex = 1)
@@ -142,11 +142,11 @@ legend(x = "topleft", c("normal","Weibull"), col=c("purple","orange"), lty = 1, 
 boxplot(NFL ~ GROUP, data = data, main = "NfL - both groups")
 boxplot(PTAU181 ~ GROUP, data = data, main = "P-tau181 - both groups")
 
-qqPlot(NFL_group_0, main = "NfL - group 0")
-qqPlot(NFL_group_1, main = "NfL - group 1")
+qqPlot(NFL_group_0, main = "NfL - Control Group")
+qqPlot(NFL_group_1, main = "NfL - Treated Group")
 
-qqPlot(PTAU181_group_0, main = "P-tau181 - group 0")
-qqPlot(PTAU181_group_1, main = "P-tau181 - group 1")
+qqPlot(PTAU181_group_0, main = "P-tau181 - Control Group")
+qqPlot(PTAU181_group_1, main = "P-tau181 - Treated Group")
 
 # ---------------- Statistical analysis ----------------------------------------
 

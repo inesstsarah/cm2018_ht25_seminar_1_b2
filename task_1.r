@@ -177,10 +177,10 @@ t.test(log_PTAU181_group_0, log_PTAU181_group_1, var.equal = TRUE) # Student's t
 # --------------- Correlation --------------------------------------------------
 
 # Correlation test. Filter only Group 0 (Control participants)
-group1 <- subset(data, GROUP == 0)
+group0 <- subset(data, GROUP == 0)
 
 # Scatter plot with regression line
-ggplot(group1, aes(x = NFL, y = PTAU181)) +
+ggplot(group0, aes(x = NFL, y = PTAU181)) +
   geom_point(color = "red", size = 3) +
   geom_smooth(method = "lm", se = TRUE, color = "black") +
   labs(
@@ -191,7 +191,7 @@ ggplot(group1, aes(x = NFL, y = PTAU181)) +
   theme_minimal(base_size = 14)
 
 # Pearson correlation
-cor(group1$NFL, group1$PTAU181, method = "pearson")
+cor(group0$NFL, group0$PTAU181, method = "pearson")
 
 # Correlation test. Filter only Group 1 (AD participants)
 group1 <- subset(data, GROUP == 1)

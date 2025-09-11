@@ -137,7 +137,8 @@ lines(x_pdf, y_weib, col="orange")
 legend(x = "topleft", c("normal","Weibull"), col=c("purple","orange"), lty = 1, cex = 1)
 
 
-# More visualisation of the groups 
+# ----------------- More visualisation of the groups ---------------------------
+
 boxplot(NFL ~ GROUP, data = data, main = "NfL - both groups")
 boxplot(PTAU181 ~ GROUP, data = data, main = "P-tau181 - both groups")
 

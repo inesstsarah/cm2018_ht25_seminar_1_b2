@@ -52,12 +52,13 @@ shapiro.test(treat)
 shapiro.test(treat_after)
 
 # Calculate reduction
-mean_before <- mean(treat)
-mean_after <-  mean(treat_after)
+log_before <- log(treat)
+log_after <-  log(treat_after)
 
-geometric_mean <- exp(log(mean_after) - log(mean_before))
-
+geometric_mean <- exp(mean(log_after) - mean(log_before))
 percent_change <- (geometric_mean - 1) * 100
+
+
 
 
 

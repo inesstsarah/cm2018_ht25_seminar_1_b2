@@ -142,19 +142,19 @@ legend(x = "topleft", c("normal","Weibull"), col=c("purple","orange"), lty = 1, 
 boxplot(NFL ~ GROUP, data = data, main = "NfL - both groups")
 boxplot(PTAU181 ~ GROUP, data = data, main = "P-tau181 - both groups")
 
-qqPlot(data$NFL[data$GROUP == 0], main = "NfL - group 0")
-qqPlot(data$NFL[data$GROUP == 1], main = "NfL - group 1")
+qqPlot(NFL_group_0, main = "NfL - group 0")
+qqPlot(NFL_group_1, main = "NfL - group 1")
 
-qqPlot(data$PTAU181[data$GROUP == 0], main = "NfL - group 0")
-qqPlot(data$PTAU181[data$GROUP == 1], main = "NfL - group 1")
+qqPlot(PTAU181_group_0, main = "P-tau181 - group 0")
+qqPlot(PTAU181_group_1, main = "P-tau181 - group 1")
 
 # ---------------- Statistical analysis ----------------------------------------
 
 # Test for normality
-shapiro.test(data$NFL[data$GROUP == 0])
-shapiro.test(data$NFL[data$GROUP == 1])
-shapiro.test(data$PTAU181[data$GROUP == 0])
-shapiro.test(data$PTAU181[data$GROUP == 1])
+shapiro.test(NFL_group_0)
+shapiro.test(NFL_group_1)
+shapiro.test(PTAU181_group_0)
+shapiro.test(PTAU181_group_1)
 
 # T-test for NfL (normal)
 var.test(NFL ~ GROUP, data = data)

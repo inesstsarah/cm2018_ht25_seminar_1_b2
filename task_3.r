@@ -10,8 +10,15 @@
 
 
 install.packages('tidyverse',dependency=T)
+install.packages('ggplot')
 
+library(readr)
+library(car)
+library(dplyr)
+library(MASS)
 library(tidyverse)
+library(ggplot2)
+
 data <- read.csv('data/Data_T3.csv')
 head(data)
 
@@ -21,12 +28,42 @@ low_group <- data$NFL[data$GROUP=="Low"]
 medium_group <- data$NFL[data$GROUP=="Medium"]
 high_group <- data$NFL[data$GROUP=="High"]
 treated_group <- data$NFL[data$GROUP!="Control"]
+
 # Visualize histograms for each distribution 
-hist(control_group)
-hist(low_group)
-hist(medium_group)
-hist(high_group)
-hist(treated_group)
+hist(control_group, main = "Histogram of Control Group", xlab = 'NfL', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim=c(0,100))
+hist(low_group, main = "Histogram of Low Dose Group", xlab = 'NfL', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim = c(0,100))
+hist(medium_group, main = "Histogram of Medium Dose Group", xlab = 'NfL', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim = c(0,100))
+hist(high_group, main = "Histogram of High Dose Group", xlab = 'NfL', ylab = 'Frequency', breaks = 3, ylim = c(0,10), xlim = c(0,100))
+hist(treated_group, main = "Histogram of Treated Group", xlab = 'NfL', ylab = 'Frequency', breaks = 5, ylim = c(0,30), xlim = c(0,100))
+
+# Check the normality of every distribution 
+shapiro.test(control_group) 
+# data:  control_group
+# W = 0.94499, p-value = 0.2974 p-value>0.05 indicates non-normality
+
+shapiro.test(low_group) 
+# data:  low_group
+# W = 0.8813, p-value = 0.01868 p-value<0.05 indicates non-normality
+
+shapiro.test(medium_group) 
+# data:  medium_group
+# W = 0.76382, p-value = 0.0002617 p-value<0.05 indicates non-normality
+
+shapiro.test(high_group) 
+# data:  high_group
+# W = 0.9676, p-value = 0.7035 p-value>0.05 indicates normality
+
+shapiro.test(treated_group)
+# data:  treated_group
+# W = 0.82543, p-value = 6.17e-07
+
+# Q-Q Plot to visualize normality
+qqPlot(control_group, main = "Q-Q Plot of Control Group")
+qqPlot(low_group, main = "Q-Q Plot of Low Dose Group")
+qqPlot(medium_group, main = "Q-Q Plot of Medium Group")
+qqPlot(high_group, main = "Q-Q Plot of High Group")
+qqPlot(treated_group, main = "Q-Q Plot of Treated Group")
+
 
 
 # Do t test on control and low, medium and high group (control vs treated group)
@@ -53,6 +90,9 @@ cohens_d(control_group, treated_group)
 #------------------------
 #  0.68      | [0.16, 1.19]
 # This shows that there is a large separation within the control group and the treated group's means
+
+
+cohens_d(high_group, medium_group)
 
 # Do t-test on the control group and the 
 

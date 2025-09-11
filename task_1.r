@@ -147,19 +147,31 @@ qqPlot(data$NFL[data$GROUP == 1], main = "NfL - group 1")
 qqPlot(data$PTAU181[data$GROUP == 0], main = "NfL - group 0")
 qqPlot(data$PTAU181[data$GROUP == 1], main = "NfL - group 1")
 
+# ---------------- Statistical analysis ----------------------------------------
+
 # Test for normality
 shapiro.test(data$NFL[data$GROUP == 0])
 shapiro.test(data$NFL[data$GROUP == 1])
 shapiro.test(data$PTAU181[data$GROUP == 0])
 shapiro.test(data$PTAU181[data$GROUP == 1])
 
-# ---------------- Statistical analysis ----------------------------------------
 # T-test for NfL (normal)
 var.test(NFL ~ GROUP, data = data)
-t.test(NFL ~ GROUP, data = data, var.equal = FALSE)
+t.test(NFL ~ GROUP, data = data, var.equal = FALSE) # Welch's t-test bc unequal variances
 
 # Wilcoxon test for P-tau181 (not normal)
 wilcox.test(PTAU181 ~ GROUP, data = data)
+
+# Log-transform + t-test for P-tau181
+log_PTAU181_group_0 <- log(PTAU181_group_0)
+log_PTAU181_group_1 <- log(PTAU181_group_1)
+
+shapiro.test(log_PTAU181_group_0)
+shapiro.test(log_PTAU181_group_1)
+
+var.test(log_PTAU181_group_0, log_PTAU181_group_1)
+t.test(log_PTAU181_group_0, log_PTAU181_group_1, var.equal = TRUE) # Student's t-test bc equal variances
+
 
 # --------------- Correlation --------------------------------------------------
 

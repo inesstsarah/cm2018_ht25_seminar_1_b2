@@ -17,8 +17,8 @@ contr <-  data$NFL[data$GROUP == 0]
 treat <- data$NFL[data$GROUP == 1]
 
 # Get geometric means
-geometric_mean_contr <- exp(mean(contr))
-geometric_mean_treat <- exp(mean(treat))
+geometric_mean_contr <- exp(mean(log(contr)))
+geometric_mean_treat <- exp(mean(log(treat)))
 
 # Standard deviations
 sd_contr <- sd(contr)
@@ -40,7 +40,7 @@ plot(p.t.two, xlab = "sample size per group")
 # install_github("adamdarwichkth/CM2018rpackage")
 # library(CM2018rpackage)
 
-#my_dataframe <- ad_trial_data(n_per_arm = 89)
+# my_dataframe <- ad_trial_data(n_per_arm = 138)
 my_dataframe <- read.csv("data/my_dataframe.csv")
 
 head(my_dataframe)

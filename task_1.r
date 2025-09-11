@@ -34,8 +34,13 @@ x_pdf <- seq(height_min, height_max, 1)
 
 weibull_params_0 <- fitdistr(NFL_group_0, "weibull")
 # Then we sample from the pdfs using the parameter estimates
-y_norm <- dnorm(x_pdf, normal_params_0$estimate["mean"], normal_params$estimate["sd"])
-y_weib <- dweibull(x_pdf, weibull_params_0$estimate["shape"], weibull_params$estimate["scale"])
+y_norm <- dnorm(x_pdf,
+                mean = normal_params_0$estimate["mean"],
+                sd   = normal_params_0$estimate["sd"])
+
+y_weib <- dweibull(x_pdf,
+                   shape = weibull_params_0$estimate["shape"],
+                   scale = weibull_params_0$estimate["scale"])
 
 # Plot the histogram and lines
 hist(NFL_group_0, freq = FALSE, xlab = "NFL concentration", ylab = "Density", main = "NFL Group 0 Fitted Distributions")

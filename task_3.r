@@ -31,18 +31,16 @@ treated_group <- data$NFL[data$GROUP!="Control"]
 
 # Visualizing 
 library(tidyr)
-data %>% 
-  select(-Species) %>%
-  pivot_longer(everything()) %>% 
-  ggboxplot(x = 'name', fill = "name", y = 'value', 
-            palette = c("#00AFBB", "#E7B800", "#FC4E07", "#00FABA"))
+
+# Multiple boxplots in same graph
+boxplot(NFL ~ GROUP, data, col = c("pink", "lightgreen", "orange", "yellow"), main="Boxplot Comparison of All Groups", ylab = "NfL Concentration (pg/mL)", xlab = "Group")                                
 
 # Visualize histograms for each distribution 
-hist(control_group, main = "Histogram of Control Group", xlab = 'NfL', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim=c(0,100))
-hist(low_group, main = "Histogram of Low Dose Group", xlab = 'NfL', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim = c(0,100))
-hist(medium_group, main = "Histogram of Medium Dose Group", xlab = 'NfL', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim = c(0,100))
-hist(high_group, main = "Histogram of High Dose Group", xlab = 'NfL', ylab = 'Frequency', breaks = 3, ylim = c(0,10), xlim = c(0,100))
-hist(treated_group, main = "Histogram of Treated Group", xlab = 'NfL', ylab = 'Frequency', breaks = 5, ylim = c(0,30), xlim = c(0,100))
+hist(control_group, main = "Histogram of Control Group", xlab = 'NfL Concentration (pg/mL)', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim=c(0,100), col = "pink")
+hist(low_group, main = "Histogram of Low Dose Group", xlab = 'NfL Concentration (pg/mL)', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim = c(0,100), col = "lightgreen")
+hist(medium_group, main = "Histogram of Medium Dose Group", xlab = 'NfL Concentration (pg/mL)', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim = c(0,100), col = "orange")
+hist(high_group, main = "Histogram of High Dose Group", xlab = 'NfL Concentration (pg/mL)', ylab = 'Frequency', breaks = 3, ylim = c(0,10), xlim = c(0,100), col = "yellow")
+hist(treated_group, main = "Histogram of Treated Group", xlab = 'NfL Concentration (pg/mL)', ylab = 'Frequency', breaks = 5, ylim = c(0,30), xlim = c(0,100), col = "lightblue")
 
 # Check the normality of every distribution 
 shapiro.test(control_group) 
@@ -105,4 +103,17 @@ cohens_d(control_group, treated_group)
 # 
 kruskal.test(NFL ~ GROUP, data = data)
 # Kruskal-Wallis chi-squared = 12.64, df = 3, p-value = 0.005483
+
+# Because Kruskal-Wallis has shown that there is a difference in the median of the four distributions, 
+# Dunn's test can be conducted to show which distribution is different. 
+install.packages("dunn.test")  
+library(dunn.test) 
+
+dunn.test(data$NFL, data$GROUP, method = "bonferroni")  # Adjust p-values (e.g., Bonferroni)
+
+install.packages("FSA")
+library(FSA)
+dunnTest(NFL ~ GROUP,
+         data=data,
+         method="bonferroni")
 

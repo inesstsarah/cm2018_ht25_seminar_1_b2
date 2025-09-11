@@ -1,10 +1,17 @@
+# Install packages
+install.packages("pwr")
+
+# Import packages
 library(pwrss)
 library(pwr)
-install.packages(pwr)
+
 data <- read.csv("data/Data_T1.csv")
 
+# Examine data structure
 head(data)
+summary(data)
 
+# Grouping of NFL
 contr <-  data$NFL[data$GROUP == 0]
 treat <- data$NFL[data$GROUP == 1]
 

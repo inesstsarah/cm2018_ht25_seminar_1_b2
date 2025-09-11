@@ -36,7 +36,12 @@ install_github("adamdarwichkth/CM2018rpackage")
 library(CM2018rpackage)
 # run the data retrieval function to load data as dataframe, 
 # specifying the number of study participants per study arm (=N)
-my_dataframe <- ad_trial_data(n_per_arm = 89)
+
+#my_dataframe <- ad_trial_data(n_per_arm = 89)
+my_dataframe <- read.csv("data/my_dataframe.csv")
+
+head(my_dataframe)
+summary(my_dataframe)
 
 contr2 <- my_dataframe$NFL[my_dataframe$GROUP == 0]
 treat_after <- my_dataframe$NFL[my_dataframe$GROUP == 1]

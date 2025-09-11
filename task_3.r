@@ -29,6 +29,14 @@ medium_group <- data$NFL[data$GROUP=="Medium"]
 high_group <- data$NFL[data$GROUP=="High"]
 treated_group <- data$NFL[data$GROUP!="Control"]
 
+# Visualizing 
+library(tidyr)
+data %>% 
+  select(-Species) %>%
+  pivot_longer(everything()) %>% 
+  ggboxplot(x = 'name', fill = "name", y = 'value', 
+            palette = c("#00AFBB", "#E7B800", "#FC4E07", "#00FABA"))
+
 # Visualize histograms for each distribution 
 hist(control_group, main = "Histogram of Control Group", xlab = 'NfL', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim=c(0,100))
 hist(low_group, main = "Histogram of Low Dose Group", xlab = 'NfL', ylab = 'Frequency', breaks = 5, ylim = c(0,10), xlim = c(0,100))
@@ -60,8 +68,8 @@ shapiro.test(treated_group)
 # Q-Q Plot to visualize normality
 qqPlot(control_group, main = "Q-Q Plot of Control Group")
 qqPlot(low_group, main = "Q-Q Plot of Low Dose Group")
-qqPlot(medium_group, main = "Q-Q Plot of Medium Group")
-qqPlot(high_group, main = "Q-Q Plot of High Group")
+qqPlot(medium_group, main = "Q-Q Plot of Medium Dose Group")
+qqPlot(high_group, main = "Q-Q Plot of High Dose Group")
 qqPlot(treated_group, main = "Q-Q Plot of Treated Group")
 
 
@@ -91,12 +99,10 @@ cohens_d(control_group, treated_group)
 #  0.68      | [0.16, 1.19]
 # This shows that there is a large separation within the control group and the treated group's means
 
-
-cohens_d(high_group, medium_group)
-
-# Do t-test on the control group and the 
-
-
-# Maybe we could do ANOVA on the 3 tests
-
+# Do ANOVA on the 4 distributions
+# Because the data is only slightly non-normal, ANOVA may still provide reliable results. Simulation studies 
+# have shown that the false positive rate is not significantly affected by moderate deviations from normality.
+# 
+kruskal.test(NFL ~ GROUP, data = data)
+# Kruskal-Wallis chi-squared = 12.64, df = 3, p-value = 0.005483
 

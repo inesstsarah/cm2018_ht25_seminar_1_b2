@@ -4,7 +4,12 @@ install.packages("pwr")
 # Import packages
 library(pwrss)
 library(pwr)
+<<<<<<< Updated upstream
 
+=======
+library(car)
+install.packages(pwr)
+>>>>>>> Stashed changes
 data <- read.csv("data/Data_T1.csv")
 
 # Examine data structure
@@ -60,6 +65,9 @@ hist(treat, main = "Before 3 months")
 hist(treat_after, main = "After 3 months")
 
 boxplot(treat, treat_after, names = c("Before", "After"), main = "NfL - before and after")
+
+qqPlot(treat, main = "Before treatment")
+qqPlot(treat_after, main = "After treatment")
 
 # Test for normality
 shapiro.test(treat)

@@ -35,6 +35,15 @@ ggplot(df_t4a, aes(x = factor(treatment), fill = response)) +
     title = "SPMSQ Distribution by Treatment Arm"
   ) 
   theme_minimal()
+
+# count plot for spmsq vs group
+ggplot(data_t4a, aes(x = Response, fill = Response)) +
+  geom_bar() +
+  facet_wrap(~Treatment, nrow = 1) +  # separate panels per treatment group
+  labs(x = "SPMSQ category", y = "Number of patients") +
+  scale_fill_brewer(palette = "RdYlBu", direction = -1) +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none")  # legend not needed since x-axis labels show Response
   
   
 #Given the biomarkers from previous data in Task3 we now can find out the relation

@@ -1,6 +1,7 @@
 # Install packages
 install.packages("tidyverse")
 install.packages("car")
+install.packages("ggplot2")
 
 # Import packages
 library(readr)
@@ -8,6 +9,7 @@ library(car)
 library(dplyr)
 library(MASS)
 library(tidyverse)
+library(ggplot2)
 
 data <- read.csv("data/Data_T1.csv")
 

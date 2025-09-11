@@ -2,6 +2,7 @@
 install.packages("tidyverse")
 install.packages("car")
 install.packages("ggplot2")
+install.packages("fitdistrplus")
 
 # Import packages
 library(readr)
@@ -10,6 +11,7 @@ library(dplyr)
 library(MASS)
 library(tidyverse)
 library(ggplot2)
+library(fitdistrplus)
 
 data <- read.csv("data/Data_T1.csv")
 
@@ -79,7 +81,7 @@ lines(x_pdf, y_weib, col="orange")
 legend(x = "topleft", c("normal","Weibull"), col=c("purple","orange"), lty = 1, cex = 1)
 
 
-# ------------------------- Visualise P-tau181 -------------------------------------
+# ------------------------- Visualise P-tau181 --------------------------------
 
 # Histograms with counts
 hist(PTAU181_group_0, main = "P-tau181 - group 0", xlab = "X")
@@ -118,8 +120,6 @@ height_min <- min(PTAU181_group_1)
 height_max <- max(PTAU181_group_1)
 x_pdf <- seq(height_min, height_max, length.out = 100)
 
-install.packages("fitdistrplus")
-library(fitdistrplus)
 weibull_params_1 <- fitdist(PTAU181_group_1, "weibull")
 # Then we sample from the pdfs using the parameter estimates
 y_norm <- dnorm(x_pdf, 
@@ -137,7 +137,7 @@ lines(x_pdf, y_weib, col="orange")
 legend(x = "topleft", c("normal","Weibull"), col=c("purple","orange"), lty = 1, cex = 1)
 
 
-
+# More visualisation of the groups 
 boxplot(NFL ~ GROUP, data = data, main = "NfL - both groups")
 boxplot(PTAU181 ~ GROUP, data = data, main = "P-tau181 - both groups")
 
@@ -153,13 +153,15 @@ shapiro.test(data$NFL[data$GROUP == 1])
 shapiro.test(data$PTAU181[data$GROUP == 0])
 shapiro.test(data$PTAU181[data$GROUP == 1])
 
+# ---------------- Statistical analysis ----------------------------------------
 # T-test for NfL (normal)
 var.test(NFL ~ GROUP, data = data)
-
 t.test(NFL ~ GROUP, data = data, var.equal = FALSE)
 
 # Wilcoxon test for P-tau181 (not normal)
 wilcox.test(PTAU181 ~ GROUP, data = data)
+
+# --------------- Correlation --------------------------------------------------
 
 # Correlation test. Filter only Group 0 (Control participants)
 group1 <- subset(data, GROUP == 0)

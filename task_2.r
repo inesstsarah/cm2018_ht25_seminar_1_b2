@@ -47,16 +47,27 @@ hist(treat_after, main = "After 3 months")
 
 boxplot(treat, treat_after, names = c("Before", "After"), main = "NfL - before and after")
 
-# Test for normality
-shapiro.test(treat)
-shapiro.test(treat_after)
-
 # Calculate reduction
 log_before <- log(treat)
 log_after <-  log(treat_after)
 
 geometric_mean <- exp(mean(log_after) - mean(log_before))
 percent_change <- (geometric_mean - 1) * 100
+
+# Test for normality
+shapiro.test(treat)
+shapiro.test(treat_after)
+
+# Wilcoxon-Mann-Whitney test on raw data
+wilcox.test(treat, treat_after)
+
+# Test log-transformed groups for normality
+shapiro.test(log_before)
+shapiro.test(log_after)
+
+# T-test for log-transformed groups
+var.test(log_before, log_after)
+t.test(log_before, log_after, var.equal = FALSE)
 
 
 

@@ -48,7 +48,7 @@ ggplot(counts, aes(x = factor(treatment), y = n, fill = response)) +
   ) +
   theme_minimal()
 
-# Count plot for SPMSQ vs group_____________________________________________________________
+# Count plot for SPMSQ vs group divided by ocassion _____________________________________________________________
 ggplot(data_t4a, aes(x = response, fill = response)) +
   geom_bar() +
   facet_wrap(~treatment, nrow = 1) +  # separate panels per treatment group
@@ -56,6 +56,21 @@ ggplot(data_t4a, aes(x = response, fill = response)) +
   scale_fill_brewer(palette = "RdYlBu", direction = -1) +
   theme_minimal(base_size = 14) +
   theme(legend.position = "none")  # legend not needed since x-axis labels show Response
+
+# Count plot for SPMSQ vs group divided by group -------------------------------------------
+
+ggplot(data_t4a, aes(x = factor(Treatment), fill = Response)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "SPMSQ Categories by Treatment Group",
+    x = "Treatment Group",
+    y = "Number of Patients",
+    fill = "SPMSQ Category"
+  ) +
+  scale_x_discrete(labels = c("0" = "Group 0", "1" = "Group 1", 
+                              "2" = "Group 2", "3" = "Group 3")) +
+  scale_fill_brewer(palette = "RdYlBu", direction = -1) +
+  theme_minimal(base_size = 14)
 
 
 

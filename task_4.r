@@ -1,5 +1,8 @@
 # TASK 4
 
+# Install packages
+install.packages("ggalluvial")
+
 # Load packages
 library(dplyr)
 library(ggplot2)
@@ -11,7 +14,7 @@ library(tidyr)
 # Read all the Data needed 
 data_t4a <- read.csv("data/Data_T4A.csv")
 data_T3 <- read.csv("data/Data_T3.csv")
-data_t4b <- read.csv("Data_T4B.csv")
+data_t4b <- read.csv("data/Data_T4B.csv")
 
 #------------------------- Visualising SPMSQ --------------------------------------------
 

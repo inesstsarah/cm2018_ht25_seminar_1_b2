@@ -30,7 +30,7 @@ counts <- df_t4a %>%
   group_by(treatment, response) %>%
   summarise(n = n(), .groups = "drop")
 
-# Procentage plot for SPMSQ vs group_______________________________________________________
+# Percentage plot for SPMSQ vs group_______________________________________________________
 # Stacked bar chart
 ggplot(counts, aes(x = factor(treatment), y = n, fill = response)) +
   geom_bar(stat = "identity", position = "fill") +
@@ -87,7 +87,7 @@ box_counts <- merged_data %>%
   group_by(response) %>%
   summarise(n = n(), .groups = "drop")
 
-# Boxplot___________________________________________________________________________________
+# Box-and-jitter plot__________________________________________________________________________
 ggplot(merged_data, aes(x = response, y = NFL, fill = response)) +
   geom_boxplot(alpha = 0.7) +
   geom_jitter(width = 0.2, alpha = 0.5) +
@@ -104,7 +104,7 @@ ggplot(merged_data, aes(x = response, y = NFL, fill = response)) +
   theme(legend.position = "none")
 
 
-# Violin plot________________________________________________________________________________
+# Box-and-jitter plot + Violin plot_______________________________________________________________
 ggplot(merged_data, aes(x = response, y = NFL, fill = response)) +
   geom_violin(trim = FALSE, alpha = 0.4) +
   geom_boxplot(width = 0.15, outlier.shape = NA, alpha = 0.7) +

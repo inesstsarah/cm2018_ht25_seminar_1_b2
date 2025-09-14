@@ -94,19 +94,16 @@ legend(x = "topleft", c("normal","Weibull"), col=c("purple","orange"), lty = 1, 
 hist(PTAU181_group_0, main = "P-tau181 Histogram - Control Group", xlab = "P-tau181 Concentration (pg/mL)")
 hist(PTAU181_group_1, main = "P-tau181 Histogram - Treated Group", xlab = "P-tau181 Concentration (pg/mL)")
 
-# Fit the P-tau181 data to the normal distribution
+# Do fitted distributions for group 0
 normal_params_0 <- fitdistr(PTAU181_group_0, "normal")
-normal_params_1 <- fitdistr(PTAU181_group_1, "normal")
 normal_params_0      # Added for visualisation
-normal_params_1      # Added for visualisation
+weibull_params_0 <- fitdistr(PTAU181_group_0, "weibull")
+weibull_params_0     # Added for visualisation
 
-# Do fitted distributions for group 0 
 height_min <- min(PTAU181_group_0)
 height_max <- max(PTAU181_group_0)
 x_pdf <- seq(height_min, height_max, length.out = 100)
 
-
-weibull_params_0 <- fitdistr(PTAU181_group_0, "weibull")
 # Then we sample from the pdfs using the parameter estimates
 y_norm <- dnorm(x_pdf,
                 mean = normal_params_0$estimate["mean"],
@@ -122,20 +119,23 @@ lines(x_pdf, y_norm, col="blue")
 lines(x_pdf, y_weib, col="red")
 legend(x = "topleft", c("normal","Weibull"), col=c("blue","red"), lty = 1, cex = 1)
 
-# Do fitted distributions for group 1 
+# Do fitted distributions for group 1
+normal_params_1 <- fitdistr(PTAU181_group_1, "normal")
+normal_params_1      # Added for visualisation
+weibull_params_1 <- fitdist(PTAU181_group_1, "weibull")
+weibull_params_1     # Added for visualisation
+
 height_min <- min(PTAU181_group_1)
 height_max <- max(PTAU181_group_1)
 x_pdf <- seq(height_min, height_max, length.out = 100)
 
-weibull_params_1 <- fitdist(PTAU181_group_1, "weibull")
-# Then we sample from the pdfs using the parameter estimates
+# Sample from the pdfs using the parameter estimates
 y_norm <- dnorm(x_pdf, 
                 normal_params_1$estimate["mean"], 
                 normal_params_1$estimate["sd"])
 y_weib <- dweibull(x_pdf, 
                    weibull_params_1$estimate["shape"], 
                    weibull_params_1$estimate["scale"])
-
 
 # Plot the histogram and lines
 hist(PTAU181_group_1, freq = FALSE, xlab = "P-tau181 Concentration (pg/mL)", ylab = "Density", main = "P-tau181 Treated Group Fitted Distributions")

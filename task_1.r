@@ -147,11 +147,10 @@ legend(x = "topleft", c("normal","Weibull"), col=c("purple","orange"), lty = 1, 
 # ----------------- More visualisation of the groups ---------------------------
 
 boxplot(NFL ~ GROUP, data = data, main = "NfL - both groups")
-boxplot(PTAU181 ~ GROUP, data = data, main = "P-tau181 - both groups")
-
 qqPlot(NFL_group_0, main = "NfL - Control Group")
 qqPlot(NFL_group_1, main = "NfL - Treated Group")
 
+boxplot(PTAU181 ~ GROUP, data = data, main = "P-tau181 - both groups")
 qqPlot(PTAU181_group_0, main = "P-tau181 - Control Group")
 qqPlot(PTAU181_group_1, main = "P-tau181 - Treated Group")
 

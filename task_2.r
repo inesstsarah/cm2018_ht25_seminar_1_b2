@@ -57,13 +57,13 @@ geometric_mean_dif <- exp(mean(log_after) - mean(log_before))
 percent_change <- (geometric_mean_dif - 1) * 100
 
 # Visualise data
-hist(treat, main = "Before 3 months")
-hist(treat_after, main = "After 3 months")
+hist(treat, col = "rosybrown", main = "Before 3 months", xlab = "NfL levels", freq = FALSE)
+hist(treat_after, col = "darkseagreen", main = "After 3 months", xlab = "NfL levels", freq = FALSE)
 
-boxplot(treat, treat_after, names = c("Before", "After"), main = "NfL - before and after")
+boxplot(treat, treat_after, names = c("Before", "After"), col = c("rosybrown", "darkseagreen"), main = "NfL - before and after")
 
-qqPlot(treat, main = "Before treatment")
-qqPlot(treat_after, main = "After treatment")
+qqPlot(treat, main = "Before treatment", xlab = "Normal quantiles", ylab = "NfL levels")
+qqPlot(treat_after, main = "After treatment", xlab = "Normal quantiles", ylab = "NfL levels")
 
 # Test for normality
 shapiro.test(treat)

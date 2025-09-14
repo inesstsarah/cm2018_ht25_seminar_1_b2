@@ -38,13 +38,16 @@ normal_params_1 <- fitdistr(NFL_group_1, "normal")
 normal_params_0      # Added for visualisation
 normal_params_1      # Added for visualisation
 
+# Fit the NFL data to the Weibull distribution
+weibull_params_0 <- fitdistr(NFL_group_0, "weibull")
+weibull_params_0     # Added for visualisation
+
 # Do fitted distributions for group 0 
 height_min <- min(NFL_group_0)
 height_max <- max(NFL_group_0)
 x_pdf <- seq(height_min, height_max, 1)
 
-weibull_params_0 <- fitdistr(NFL_group_0, "weibull")
-# Then we sample from the pdfs using the parameter estimates
+# Sample from the pdfs using the parameter estimates
 y_norm <- dnorm(x_pdf,
                 mean = normal_params_0$estimate["mean"],
                 sd   = normal_params_0$estimate["sd"])

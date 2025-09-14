@@ -32,11 +32,11 @@ PTAU181_group_1 = data$PTAU181[data$GROUP == 1]
 hist(NFL_group_0, main = "NfL Histogram - Control Group", xlab = "NfL Concentration (pg/mL)")
 hist(NFL_group_1, main = "NfL Histogram - Treated Group", xlab = "NfL Concentration (pg/mL)")
 
-# Fit the NFL data to the normal distribution
+# Do fitted distributions for group 0 
 normal_params_0 <- fitdistr(NFL_group_0, "normal")
-normal_params_1 <- fitdistr(NFL_group_1, "normal")
 normal_params_0      # Added for visualisation
-normal_params_1      # Added for visualisation
+weibull_params_0 <- fitdistr(NFL_group_0, "weibull")
+weibull_params_0     # Added for visualisation
 
 # Fit the NFL data to the Weibull distribution
 weibull_params_0 <- fitdistr(NFL_group_0, "weibull")
@@ -63,12 +63,16 @@ lines(x_pdf, y_weib, col="red")
 legend(x = "topleft", c("normal","Weibull"), col=c("blue","red"), lty = 1, cex = 1)
 
 # Do fitted distributions for group 1 
+normal_params_1 <- fitdistr(NFL_group_1, "normal")
+normal_params_1      # Added for visualisation
+weibull_params_1 <- fitdistr(NFL_group_1, "weibull")
+weibull_params_1     # Added for visualisation
+
 height_min <- min(NFL_group_1)
 height_max <- max(NFL_group_1)
 x_pdf <- seq(height_min, height_max, 1)
 
-weibull_params_1 <- fitdistr(NFL_group_1, "weibull")
-# Then we sample from the pdfs using the parameter estimates
+# Sample from the pdfs using the parameter estimates
 y_norm <- dnorm(x_pdf, 
                 normal_params_1$estimate["mean"], 
                 normal_params_1$estimate["sd"])

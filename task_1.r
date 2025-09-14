@@ -38,11 +38,6 @@ normal_params_0      # Added for visualisation
 weibull_params_0 <- fitdistr(NFL_group_0, "weibull")
 weibull_params_0     # Added for visualisation
 
-# Fit the NFL data to the Weibull distribution
-weibull_params_0 <- fitdistr(NFL_group_0, "weibull")
-weibull_params_0     # Added for visualisation
-
-# Do fitted distributions for group 0 
 height_min <- min(NFL_group_0)
 height_max <- max(NFL_group_0)
 x_pdf <- seq(height_min, height_max, 1)
